@@ -1,0 +1,5 @@
+{
+  "input": "Machine learning is a subset of artificial intelligence that focuses on training algorithms to learn from data and make predictions without being explicitly programmed. It involves feeding large amounts of data to algorithms, which then identify patterns and relationships within that data. These patterns allow the model to make accurate predictions or decisions when presented with new, unseen data.",
+  "max_tokens": 4096,
+  "temperature": 0.5
+}
