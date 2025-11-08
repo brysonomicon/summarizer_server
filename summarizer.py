@@ -38,7 +38,7 @@ Content:
                     "temperature": request.temperature
                 }
             },
-            timeout=300
+            timeout=600
         )
         response.raise_for_status()
 
