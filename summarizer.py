@@ -22,8 +22,8 @@ async def summarize(request: SummarizeRequest) -> SummarizeResponse:
         raise HTTPException(status_code=400, detail="there is no input")
 
     prompt = f"""Your job is to summarize the following content into a set of comprehensive markdown notes. The goal is verbosity. Identify the topics that are covered, then provide
-    a summary. You should augment the summary with important information. Generate test questions. Be as verbose as possible. Do everything in your power to use as many of the 
-    tokens you are capable of producing. There is no such thing as too verbose in your response. Just keep going until you hit the token limit.
+    a summary. You should augment the summary with important information. Be as verbose as possible. Complete your answer in steps. First summarize everything. Then go over the summary
+    and expand on each point to help pad out the response.
 Content:
 {request.input}"""
 
