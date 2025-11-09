@@ -5,13 +5,13 @@ import os
 
 app = FastAPI()
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
 MODEL = "gemma2:9b"
 
 class SummarizeRequest(BaseModel):
     input: str
     max_tokens: int = 32768
-    temperature: float = 0.5
+    temperature: float = 0.1
 
 class SummarizeResponse(BaseModel):
     summary: str
@@ -21,8 +21,9 @@ async def summarize(request: SummarizeRequest) -> SummarizeResponse:
     if not request.input.strip():
         raise HTTPException(status_code=400, detail="there is no input")
 
-    prompt = f"""You are a study assistant. Summarize the following content
-into clear, organized markdown notes for studying. 
+    prompt = f"""Your job is to summarize the following content into a set of comprehensive markdown notes. The goal is verbosity. Identify the topics that are covered, then provide
+    a summary. You should augment the summary with important information. Generate test questions. Be as verbose as possible. Do everything in your power to use as many of the 
+    tokens you are capable of producing. There is no such thing as too verbose in your response. Just keep going until you hit the token limit.
 Content:
 {request.input}"""
 
